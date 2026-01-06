@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電験三種 機械分野 | 電動機応用 ポイント学習 (数式対応版)</title>
+    <!-- MathJax スクリプトの読み込み -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans CJK JP", "Yu Gothic", Meiryo, sans-serif;
+            line-height: 1.8;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #1a3a6e;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #1a3a6e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #0056b3;
+            border-left: 5px solid #4a90e2;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+        .menu {
+            background-color: #eaf2fa;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+        .menu ul { list-style: none; padding: 0; margin: 0; }
+        .menu li { margin: 10px 0; }
+        .menu a { text-decoration: none; color: #0056b3; font-weight: bold; transition: color 0.3s; }
+        .menu a:hover { color: #4a90e2; text-decoration: underline; }
+        
+        /* MathJaxの表示スタイル調整 */
+        .mjx-chtml {
+            font-size: 1.1em !important;
+            margin: 1.5em auto;
+        }
+
+        details {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #fafafa;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #1a3a6e;
+        }
+        details[open] { background-color: #f0f6fc; }
+        .hint ul, .explanation ul { padding-left: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: left; }
+        th { background-color: #eaf2fa; font-weight: bold; }
+        .footer { text-align: center; margin-top: 40px; color: #777; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>電験三種 機械分野 | 電動機応用の重要ポイントをマスターしよう！</h1>
+
+        <p>こんにちは！ここでは、電験三種の機械分野における「電動機応用」の最重要項目を解説します。<br>
+        各テーマのポイント、必須公式、そして解法のヒントをまとめていますので、試験対策にご活用ください。</p>
+
+        <div class="menu">
+            <strong>学習メニュー (クリックして各項目へジャンプ)</strong>
+            <ul>
+                <li><a href="#flywheel">1. はずみ車 (フライホイール) の役割と計算</a></li>
+                <li><a href="#elevator">2. エレベータの電動機出力</a></li>
+                <li><a href="#pump">3. ポンプの動力計算</a></li>
+                <li><a href="#bldc">4. ブラシレスDCモータと小型モータ</a></li>
+            </ul>
+        </div>
+
+        <section id="flywheel">
+            <h2>【1. はずみ車 (フライホイール) の役割と計算】</h2>
+            
+            <h3>🎯 ここがポイント</h3>
+            <p>はずみ車は、<strong>回転エネルギーを蓄え、負荷の急な変動を吸収・緩和する</strong>ための部品です。電動機の負荷を平準化し、電動機の容量を小さくすることができます。</p>
+
+            <h3>🔍 詳しい解説</h3>
+            <div class="explanation">
+                <p>圧延機やプレス機のように、瞬間的に大きな力が必要になるが、それ以外の時間は負荷が軽い、といった変動の激しい機械に使われます。</p>
+                <ul>
+                    <li><strong>負荷が軽い時</strong>: 電動機の余剰エネルギーで はずみ車を加速させ、運動エネルギーとして蓄えます。</li>
+                    <li><strong>負荷が重い時</strong>: はずみ車が減速し、蓄えていたエネルギーを放出して、電動機を助けます。</li>
+                </ul>
+            </div>
+
+            <h3>📝 必須公式</h3>
+            <p>1. <strong>蓄えられるエネルギー (運動エネルギー) [J]</strong>
+                $$ W = \frac{1}{2} J \omega^2 $$
+                ここで、\(W\): 運動エネルギー [J], \(J\): 慣性モーメント [kg・m²], \(\omega\): 角速度 [rad/s]
+            </p>
+            <p>2. <strong>速度変化時に放出・吸収されるエネルギー [J]</strong>
+                $$ \Delta W = \frac{1}{2} J (\omega_{max}^2 - \omega_{min}^2) $$
+                 ここで、\(\omega_{max}\): 最大角速度, \(\omega_{min}\): 最低角速度
+            </p>
+            <p>3. <strong>慣性モーメント\(J\)とGD²の関係</strong>
+                $$ J = \frac{GD^2}{4g} $$
+                ここで、\(GD^2\): はずみ効果 [N・m²], \(g\): 重力加速度 (約9.8 m/s²)
+            </p>
+            <p>4. <strong>角速度\(\omega\)と回転速度\(N\)の関係</strong>
+                $$ \omega = \frac{2\pi N}{60} $$
+                ここで、\(N\): 回転速度 [min⁻¹ または rpm]
+            </p>
+            
+            <h3>💡 解法のヒント</h3>
+            <div class="hint">
+                <ul>
+                    <li><strong>単位変換が命！</strong> 回転速度 \(N\) [rpm] を角速度 \(\omega\) [rad/s] に変換する計算は頻出です。</li>
+                    <li>問題では、ある仕事量 \(W_L\) [J] が \(t\) [s] 秒間かかった、という形で与えられます。この時に放出されるエネルギー \(\Delta W\) が \(W_L\) を上回る（または等しい）必要があります。</li>
+                </ul>
+            </div>
+
+            <h3>✅ 確認クイズ</h3>
+            <details>
+                <summary>あるはずみ車が 1500 rpm で回転しているときのエネルギーが100 kJ であった。負荷がかかり、回転数が 1200 rpm に低下したとき、放出されたエネルギー [kJ] はいくらか？</summary>
+                <div>
+                    <p><strong>答え: 36 kJ</strong></p>
+                    <p>
+                    エネルギーは回転速度の<b>2乗</b>に比例します (\( W \propto N^2 \))。<br>
+                    回転数が 1500 rpm から 1200 rpm になったので、速度比は \( \frac{1200}{1500} = 0.8 \)倍です。<br>
+                    エネルギーは \( (0.8)^2 = 0.64 \)倍になります。<br>
+                    低下後のエネルギー = \( 100 \, \text{kJ} \times 0.64 = 64 \, \text{kJ} \)<br>
+                    放出されたエネルギー = \( 100 \, \text{kJ} - 64 \, \text{kJ} = \mathbf{36 \, kJ} \)
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <section id="elevator">
+            <h2>【2. エレベータの電動機出力】</h2>
+
+            <h3>🎯 ここがポイント</h3>
+            <p>エレベータの電動機出力は、<strong>「かご」と「つり合いおもり」の差を考慮した正味の重量を、一定の速度で引き上げる</strong>ために必要な動力で計算されます。機械効率も忘れてはいけません。</p>
+
+            <h3>📝 必須公式</h3>
+            <p><strong>電動機出力 P [W]</strong>
+                $$ P = \frac{9.8 M v}{\eta} \quad \text{[W]} $$
+                <ul>
+                    <li>\(P\): 電動機出力 [W]</li>
+                    <li>\(M\): 持ち上げる正味の質量 [kg]</li>
+                    <li>\(v\): 上昇速度 [m/s]</li>
+                    <li>\(\eta\): 機械全体の効率</li>
+                </ul>
+                ※ [kW]で求める場合は、結果を1000で割ります。
+            </p>
+
+            <h3>💡 解法のヒント</h3>
+            <div class="hint">
+                <ul>
+                    <li>問題文で何を持ち上げるのかを正確に把握しましょう。「積載質量のみ」「かごを含めた質量」など、条件をよく読んで \(M\) に代入する値を決めます。</li>
+                    <li>速度の単位が `[m/min]` で与えられた場合は、`60`で割って `[m/s]` に直してから計算しましょう。</li>
+                </ul>
+            </div>
+
+            <h3>✅ 確認クイズ</h3>
+            <details>
+                <summary>積載質量 1000 kg の荷物を 1.5 m/s の速度で引き上げるエレベータがある。機械効率が 70% のとき、必要な電動機の出力 [kW] はいくらか？（つり合いおもりは考えないものとする）</summary>
+                <div>
+                    <p><strong>答え: 21 kW</strong></p>
+                    <p>
+                    まず、ワット[W]単位で出力を求めます。<br>
+                    $$ P = \frac{9.8 \times M \times v}{\eta} = \frac{9.8 \times 1000 \times 1.5}{0.7} = \frac{14700}{0.7} = 21000 \, \text{[W]} $$
+                    これをキロワット[kW]に変換します。<br>
+                    $$ 21000 \, \text{W} = \mathbf{21 \, kW} $$
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <section id="pump">
+            <h2>【3. ポンプの動力計算】</h2>
+
+            <h3>🎯 ここがポイント</h3>
+            <p>ポンプ用電動機の動力は、<strong>単位時間あたりに汲み上げる水の重量を、どれだけの高さまで持ち上げるか</strong>で決まります。ポンプと電動機、両方の効率を考慮する必要があります。</p>
+
+            <h3>📝 必須公式</h3>
+            <p><strong>ポンプ用電動機出力 P [W]</strong>
+                $$ P = \frac{9.8 Q H}{\eta_p \eta_m} \quad \text{[W]} $$
+                <ul>
+                    <li>\(Q\): 流量 [m³/s]</li>
+                    <li>\(H\): 全揚程 [m] (実揚程 + 損失水頭)</li>
+                    <li>\(\eta_p\): ポンプの効率</li>
+                    <li>\(\eta_m\): 電動機の効率</li>
+                </ul>
+            </p>
+            <p><strong>【超重要】流量\(Q_{min}\)の単位が [m³/min] の場合</strong>
+                $$ P = \frac{9.8 Q_{min} H}{60 \cdot \eta_p \eta_m} \quad \text{[W]} $$
+                ※ [kW]で求める場合は、結果を1000で割ります。
+            </p>
+
+            <h3>💡 解法のヒント</h3>
+            <div class="hint">
+                <ul>
+                    <li><strong>とにかく単位に注意！</strong> 特に流量 \(Q\) が `[m³/s]` なのか `[m³/min]` なのかは最優先で確認しましょう。</li>
+                    <li>「ポンプ効率」と「電動機効率」が別々に与えられたら、両方を分母で掛け算します。</li>
+                </ul>
+            </div>
+
+            <h3>✅ 確認クイズ</h3>
+            <details>
+                <summary>全揚程 15 m、流量 1.2 m³/min の水を汲み上げるポンプがある。ポンプ効率が 80%、電動機効率が 90% のとき、必要な電動機の出力 [kW] はいくらか？</summary>
+                <div>
+                    <p><strong>答え: 4.08 kW</strong></p>
+                    <p>
+                    流量が `[m³/min]` なので、`60` で割る公式を使います。<br>
+                    $$ P = \frac{9.8 \times Q_{min} \times H}{60 \times \eta_p \times \eta_m} = \frac{9.8 \times 1.2 \times 15}{60 \times 0.8 \times 0.9} = \frac{176.4}{43.2} \approx 4.0833 \, \text{[kW]} $$
+                    よって、出力は約 <b>4.08 kW</b> となります。
+                    </p>
+                </div>
+            </details>
+        </section>
+
+        <section id="bldc">
+            <h2>【4. ブラシレスDCモータと小型モータ】</h2>
+
+            <h3>🎯 ここがポイント</h3>
+            <p>ブラシレスDCモータは、<strong>機械的なブラシと整流子を電子回路に置き換えた</strong>モータです。高効率・長寿命・低騒音という特徴を持ち、<strong>原理的には同期電動機</strong>の一種です。</p>
+            
+            <h3>🔍 詳しい解説</h3>
+            <h4>特徴まとめ</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>特徴</th>
+                        <th>ブラシレスDCモータ</th>
+                        <th>ブラシ付きDCモータ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>寿命</strong></td>
+                        <td><strong>長い</strong> (機械的接触部なし)</td>
+                        <td>短い (ブラシ摩耗)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>効率</strong></td>
+                        <td><strong>高い</strong></td>
+                        <td>やや低い</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ノイズ</strong></td>
+                        <td><strong>少ない</strong> (電気的・機械的)</td>
+                        <td>多い</td>
+                    </tr>
+                    <tr>
+                        <td><strong>制御</strong></td>
+                        <td><strong>複雑</strong> (駆動回路が必須)</td>
+                        <td>簡単 (直流を繋ぐだけ)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>価格</strong></td>
+                        <td>高価</td>
+                        <td>安価</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>その他小型モータ</h4>
+            <ul>
+                <li><strong>ステッピングモータ（パルスモータ）</strong>: 入力パルス信号の数に比例した角度だけ回転する。位置決め精度が非常に高く、プリンタや工作機械の送り機構などに使われる。</li>
+                <li><strong>サーボモータ</strong>: 回転角度や速度をフィードバックし、指令値と正確に一致させるように制御されるモータの総称。高精度な位置・速度制御が可能。</li>
+            </ul>
+
+            <h3>💡 解法のヒント</h3>
+            <div class="hint">
+                <ul>
+                    <li>ブラシレスDCモータは「<strong>永久磁石を回転子に持つ同期電動機</strong>」である、という点を覚えておきましょう。</li>
+                    <li>「ブラシがないことによるメリットは何か？」という視点で特徴（長寿命、高効率、低ノイズ）を整理すると覚えやすいです。</li>
+                </ul>
+            </div>
+
+            <h3>✅ 確認クイズ</h3>
+            <details>
+                <summary>ブラシレスDCモータの特徴として、<strong>誤っているもの</strong>は次のうちどれか？</summary>
+                <div>
+                    <p>1. ブラシ付きDCモータに比べて寿命が長い。<br>
+                       2. 回転子の位置を検出するためのセンサが用いられることがある。<br>
+                       3. 駆動のためにインバータなどの電子回路が必要である。<br>
+                       4. 構造が簡単で、ブラシ付きDCモータより安価である。</p>
+                    <hr>
+                    <p><strong>答え: 4</strong></p>
+                    <p>ブラシレスDCモータは、駆動用の電子回路が必須であるため、構造が複雑になり、ブラシ付きDCモータよりも一般的に高価です。</p>
+                </div>
+            </details>
+        </section>
+        
+        <div class="footer">
+            <p>学習お疲れ様でした！<br>
+            これらのポイントを基に、過去問題を繰り返し解いて知識を定着させましょう。頑張ってください！</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
